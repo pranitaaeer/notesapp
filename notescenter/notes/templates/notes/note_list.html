@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Notes
+{% endblock %}
+
+{% block content %}
+<h1> welcome to django project </h1>
+
+<a class="btn btn-primary my-3" href="{% url 'note_create' %}">
+    create Note 
+<a/>
+<div class="container row gap-3">
+    {% for note in notes %}
+     <div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+    <h5 class="card-title">{{note.user.username}}</h5>
+    <p class="card-text">{{note.title}}</p>
+    <p class="card-text">{{note.content}}</p>
+    {% if note.user == user%}
+    <a href="{% url 'note_edit' note.id%}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'note_delete' note.id%}" class="btn btn-danger">Delete</a>
+    {% endif %}
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

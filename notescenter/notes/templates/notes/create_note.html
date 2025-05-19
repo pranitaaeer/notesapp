@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Notes
+{% endblock %}
+
+{% block content %}
+<h1> welcome to django project </h1>
+
+<h2>
+    {% if form.instance.pk%} 
+    Edit Notes 
+    {% else%}
+    create Notes
+    {%endif%}
+    <form  method="post" enctype="multipart/form-data" class="form">
+
+    {% csrf_token %} 
+    {{form.as_p}}
+    <button class="btn btn-warning" type="submit">Note</button>
+    </form>
+    <a href="{%  url 'note_list'%}">Back to Note list</a>
+</h2>
+
+
+{% endblock %}
